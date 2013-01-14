@@ -95,3 +95,13 @@ USERENA_PROFILE_DETAIL_TEMPLATE = getattr(
     settings, 'USERENA_PROFILE_DETAIL_TEMPLATE', 'userena/profile_detail.html')
 
 USERENA_HIDE_EMAIL = getattr(settings, 'USERENA_HIDE_EMAIL', False)
+
+USERENA_SEND_EMAIL_MODULE = getattr(settings,
+   'USERENA_SEND_EMAIL_MODULE', 'django.core.mail')
+
+USERENA_ACTIVATION_EMAIL_SUBJECT_TEMPLATE = getattr(settings, 
+   'USERENA_ACTIVATION_EMAIL_SUBJECT_TEMPLATE', 'userena/emails/activation_email_subject.txt')
+
+USERENA_ACTIVATION_EMAIL_MESSAGE_TEMPLATE = getattr(settings, 
+   'USERENA_ACTIVATION_EMAIL_MESSAGE_TEMPLATE', 'userena/emails/activation_email_message.txt')
+

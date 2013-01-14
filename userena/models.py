@@ -189,17 +189,17 @@ class UserenaSignup(models.Model):
                   'activation_key': self.activation_key,
                   'site': Site.objects.get_current()}
 
-        subject = render_to_string('userena/emails/activation_email_subject.txt',
+        subject = render_to_string(userena_settings.USERENA_ACTIVATION_EMAIL_SUBJECT_TEMPLATE,
                                    context)
         subject = ''.join(subject.splitlines())
 
-        message = render_to_string('userena/emails/activation_email_message.txt',
+        message = render_to_string(userena_settings.USERENA_ACTIVATION_EMAIL_MESSAGE_TEMPLATE,
                                    context)
-        send_mail(subject,
+        send_mail_module = importlib.import_module(userena_settings.USERENA_SEND_EMAIL_MODULE)
+        send_mail_module.send_mail(subject,
                   message,
                   settings.DEFAULT_FROM_EMAIL,
                   [self.user.email, ])
-
 
 class UserenaBaseProfile(models.Model):
     """ Base model needed for extra profile functionality """
