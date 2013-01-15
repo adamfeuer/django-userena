@@ -13,7 +13,7 @@ from userena import settings as userena_settings
 from userena.managers import UserenaManager, UserenaBaseProfileManager
 from userena.utils import get_gravatar, generate_sha1, get_protocol, \
     get_datetime_now
-import datetime
+import datetime, importlib
 
 
 PROFILE_PERMISSIONS = (

@@ -86,11 +86,18 @@ class SignupForm(forms.Form):
                                      self.cleaned_data['email'],
                                      self.cleaned_data['password1'])
 
+        first_name = None
+        last_name = None
+        if userena_settings.USERENA_SIGNUP_FIRST_AND_LAST_NAMES:
+            first_name, last_name = (self.cleaned_data['first_name'], self.cleaned_data['last_name'])
+
         new_user = UserenaSignup.objects.create_user(username,
                                                      email,
                                                      password,
                                                      not userena_settings.USERENA_ACTIVATION_REQUIRED,
-                                                     userena_settings.USERENA_ACTIVATION_REQUIRED)
+                                                     userena_settings.USERENA_ACTIVATION_REQUIRED,
+                                                     first_name = first_name, last_name = last_name)
+
         return new_user
 
 class SignupFormOnlyEmail(SignupForm):
