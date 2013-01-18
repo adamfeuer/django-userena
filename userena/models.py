@@ -187,7 +187,8 @@ class UserenaSignup(models.Model):
                   'protocol': get_protocol(),
                   'activation_days': userena_settings.USERENA_ACTIVATION_DAYS,
                   'activation_key': self.activation_key,
-                  'site': Site.objects.get_current()}
+                  'site': Site.objects.get_current(),
+                  'settings': settings}
 
         subject = render_to_string(userena_settings.USERENA_ACTIVATION_EMAIL_SUBJECT_TEMPLATE,
                                    context)
